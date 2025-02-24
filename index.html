@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cody Myers - Senior Full-Stack Developer, AI & Automation Expert. Building innovative tech solutions for modern businesses.">
+    <meta name="author" content="Cody Myers">
+    <title>Cody Myers | NFC & IoT Innovation</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add theme color for mobile browsers -->
+    <meta name="theme-color" content="#0077cc">
+    <!-- Add prefers-color-scheme meta -->
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1729">
+    <!-- Add before other stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/fonts/SpaceGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/images/hero-bg.svg" as="image">
+    <link rel="preload" href="/assets/models/nfc-chip.glb" as="fetch" crossorigin>
+    <link rel="preload" href="/assets/animations/data-flow.json" as="fetch" crossorigin>
+    <link rel="modulepreload" href="/src/main.tsx" />
+    
+    <!-- Meta tags for SEO -->
+    <meta name="keywords" content="full-stack developer, NFC technology, AI development, IoT solutions">
+    <meta property="og:title" content="Cody Myers - Senior Full-Stack Innovator">
+    <meta property="og:description" content="Senior Full-Stack Developer specializing in NFC, AI, and IoT solutions">
+    <meta property="og:image" content="/assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <!-- PWA tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="nfc-animation">
+                <div class="nfc-ring"></div>
+                <div class="nfc-ring"></div>
+                <div class="nfc-ring"></div>
+                <i class="fas fa-wifi fa-flip-vertical"></i>
+            </div>
+            <div class="loading-text">
+                <span class="text-animate">Initializing NFC Connection</span>
+                <div class="loading-status"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Add dark mode toggle -->
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
+    <header>
+        <nav>
+            <div class="logo">Cody Myers</div>
+            <!-- Add dark mode toggle to nav -->
+            <div class="nav-right">
+                <button id="theme-toggle-nav" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="glitch-text" data-text="Innovating with Code">
+                        Innovating with Code
+                    </h1>
+                    <p class="subtitle typing-text">
+                        Crafting the future with NFC, AI, and IoT solutions
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#work" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="tech-sphere">
+                        <!-- 3D rotating sphere of technology keywords -->
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span>Scroll to Explore</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- NFC Interactive Demo -->
+    <div class="nfc-demo-container">
+        <div class="nfc-visualization">
+            <canvas id="nfc-canvas"></canvas>
+            <div class="data-streams"></div>
+        </div>
+        <div class="demo-overlay">
+            <div class="demo-content">
+                <h1 class="glitch-text">NFC Innovation</h1>
+                <p class="demo-instruction">Tap or hover to interact with NFC field</p>
+                <div class="connection-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Initializing NFC Field...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content hidden">
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm Cody Myers, a senior full-stack developer with a passion for pushing the boundaries of technology. I specialize in crafting bespoke solutions that integrate seamlessly with your business, driving efficiency and growth.</p>
+                        <p>My approach combines meticulous coding with a creative mindset, ensuring every project is not only functional but also impactful and user-centric.</p>
+                        <p>I'm particularly adept at leveraging AI, automation, and IoT to create applications that are ahead of the curve.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Key Skills</h3>
+                        <ul>
+                            <li>JavaScript (React, Node.js, Next.js)</li>
+                            <li>Python (Django, Flask, ML)</li>
+                            <li>C/C++</li>
+                            <li>NFC & IoT</li>
+                            <li>Security Engineering</li>
+                            <li>AI & Automation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <article class="project" data-project="nfc-legal">
+                        <div class="project-preview">
+                            <img src="assets/nfc-legal-preview.jpg" alt="NFC Legal Documents System">
+                            <div class="project-overlay">
+                                <div class="project-content">
+                                    <h3>NFC Legal Docs</h3>
+                                    <p>Smart document management system using NFC technology</p>
+                                    <button class="btn btn-view">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span>NFC</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                        </div>
+                    </article>
+
+                    <article class="project" data-project="ai-support">
+                        <div class="project-preview">
+                            <img src="assets/ai-support-preview.jpg" alt="AI Support System">
+                            <div class="project-overlay">
+                                <div class="project-content">
+                                    <h3>AI Support Bot</h3>
+                                    <p>Advanced customer support automation with AI</p>
+                                    <button class="btn btn-view">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span>AI</span>
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                        </div>
+                    </article>
+
+                    <article class="project" data-project="iot-automation">
+                        <div class="project-preview">
+                            <img src="assets/iot-preview.jpg" alt="IoT Automation System">
+                            <div class="project-overlay">
+                                <div class="project-content">
+                                    <h3>IoT Automation</h3>
+                                    <p>Smart home automation using IoT devices</p>
+                                    <button class="btn btn-view">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span>IoT</span>
+                            <span>C++</span>
+                            <span>MQTT</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>Ready to discuss your next project? Let's collaborate.</p>
+                <!-- Replace button with form -->
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cody Myers. All rights reserved.</p>
+    </footer>
+    <script src="https://kit.fontawesome.com/208930379e.js" crossorigin="anonymous"></script>
+    <script src="/js/tech-sphere.js"></script>
+    <script type="module" src="/js/three-scene.js"></script>
+    <script src="/js/nfc-simulation.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/main.js"></script>
+
+    <!-- Add this after your existing projects section -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <div class="tech-stack"></div>
+            </div>
+            <div class="modal-body">
+                <div class="project-images"></div>
+                <div class="project-description"></div>
+                <div class="project-features"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-demo" target="_blank">Live Demo</a>
+                <a href="#" class="btn btn-source" target="_blank">Source Code</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
