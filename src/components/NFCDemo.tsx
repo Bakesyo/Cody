@@ -1,13 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '../providers/ThemeProvider';
+import { useNFCSimulation } from '../hooks/useNFCSimulation';
 
 export default function NFCDemo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView();
   const { theme } = useTheme();
+  const { handleInteraction, isActive } = useNFCSimulation();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate NFC connection establishment
+    const timer = setTimeout(() => {
+      setLoading(false); // Set loading to false after 3 seconds
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (inView) {
@@ -41,7 +54,9 @@ export default function NFCDemo() {
           <p className="demo-instruction">Tap or hover to interact with NFC field</p>
           <div className="connection-status">
             <span className="status-dot" />
-            <span className="status-text">Initializing NFC Field...</span>
+            <span className="status-text">
+              {loading ? 'Initializing NFC Connection...' : 'NFC Field Ready!'}
+            </span>
           </div>
         </motion.div>
       </div>
