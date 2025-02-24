@@ -198,57 +198,78 @@ body {
 
 .loading-screen {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: var(--bg-color);
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s ease-out;
 }
 
-.loading-screen.fade-out {
-    opacity: 0;
-    pointer-events: none;
+.loading-content {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(var(--bg-color-rgb), 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
 .nfc-animation {
     position: relative;
     width: 200px;
     height: 200px;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
 }
 
 .nfc-ring {
     position: absolute;
-    border: 2px solid var(--primary-color);
+    inset: 0;
+    border: 4px solid var(--primary-color);
     border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: nfcPulse 2s infinite;
+    filter: drop-shadow(0 0 10px var(--primary-color));
 }
 
-.nfc-ring:nth-child(1) { width: 60px; height: 60px; animation-delay: 0s; }
-.nfc-ring:nth-child(2) { width: 100px; height: 100px; animation-delay: 0.3s; }
-.nfc-ring:nth-child(3) { width: 140px; height: 140px; animation-delay: 0.6s; }
-
-.nfc-animation i {
+.nfc-chip {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
     color: var(--primary-color);
+    filter: drop-shadow(0 0 5px var(--primary-color));
 }
 
 .loading-text {
     text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-color);
+    margin-top: 2rem;
+}
+
+.text-animate {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: var(--surface-dark);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 1rem auto;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        var(--accent-color)
+    );
+    border-radius: 2px;
 }
 
 .loading-status {
@@ -286,26 +307,6 @@ body {
     }
 }
 
-.text-animate {
-    display: inline-block;
-    position: relative;
-}
-
-.text-animate::after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    width: 3px;
-    height: 20px;
-    background: var(--primary-color);
-    margin-left: 5px;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
 .particle-network {
     position: absolute;
     top: 0;
@@ -315,15 +316,6 @@ body {
     z-index: -1;
     opacity: 0.3;
     filter: blur(1px);
-}
-
-.loading-content {
-    background: rgba(var(--bg-color-rgb), 0.95);
-    padding: 3rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
 /* Header Styles */
