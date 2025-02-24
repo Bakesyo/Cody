@@ -3,19 +3,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export function LoadingScreen() {
   const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState('Initializing');
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) {
+        const newProgress = prev + 2;
+        
+        // Update status based on progress
+        if (newProgress === 30) setStatus('Connecting to NFC Field');
+        if (newProgress === 60) setStatus('Establishing Connection');
+        if (newProgress === 90) setStatus('Almost Ready');
+        
+        if (newProgress >= 100) {
           clearInterval(timer);
           setTimeout(() => setIsVisible(false), 500);
           return 100;
         }
-        return prev + 2;
+        return newProgress;
       });
-    }, 50);
+    }, 30);
 
     return () => clearInterval(timer);
   }, []);
@@ -25,6 +33,7 @@ export function LoadingScreen() {
       {isVisible && (
         <motion.div
           className="loading-screen"
+          initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
@@ -78,14 +87,14 @@ export function LoadingScreen() {
                   ease: "easeInOut"
                 }}
               >
-                Initializing NFC Field
+                {status}
               </motion.span>
               <div className="progress-bar">
                 <motion.div
                   className="progress-fill"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.3 }}
                 />
               </div>
             </div>

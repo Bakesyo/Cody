@@ -7,24 +7,29 @@ const Projects = lazy(() => import('./components/Projects'));
 const Contact = lazy(() => import('./components/Contact'));
 
 export function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    // Preload components while showing loading screen
+    Promise.all([
+      import('./components/NFCDemo'),
+      import('./components/Projects'),
+      import('./components/Contact')
+    ]).then(() => {
+      // Add a minimum delay for the loading screen
+      setTimeout(() => {
+        setIsInitialLoading(false);
+      }, 2000);
+    });
   }, []);
 
-  if (isLoading) {
+  if (isInitialLoading) {
     return <LoadingScreen />;
   }
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={<div>Loading...</div>}>
         <main className="app">
           <NFCDemo />
           <Projects />
